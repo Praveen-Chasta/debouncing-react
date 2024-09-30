@@ -1,32 +1,93 @@
-import { useState, useEffect}  from 'react';
+// import { useEffect } from "react"
+// import { useState } from "react"
 
 
-function App (){
+// function App() {
 
-  const [handler, setHandler] = useState('');
-  const [debouncing, setValue] = useState(handler)
+//   const [value, setValue] = useState('')
+//   const [debounce, setDebounce] = useState(value)
 
-  useEffect(() => {
-     const value = setTimeout(() => {
-         setValue(handler)    
-     }, 500)
+//   useEffect(() => {
+//       const handler = setTimeout(() => {
+//           setDebounce(value)
+//       },500)
 
-    return () => (
-      clearTimeout(value)
-    )
+//       return () => {
+//         clearTimeout(handler)
+//       }
 
-  },[handler])
+//   },[value])
 
-  return(
-    <>
-      <input 
-          type = "text"
-          onChange = {(e) => setHandler(e.target.value)}
-          placeholder = "debouncing..."
-      />
-      <h1>Debouncing Value : {debouncing}</h1>
-    </>
+//   const debouncedElement = (e) => {
+//      setValue(e.target.value)
+//   }
+
+
+//   return (  
+//      <>
+//         <input type = "text" onChange = {debouncedElement}/>
+//         <p>Input Text : {debounce}</p>
+//      </>
+//   )
+// }
+
+// export default App
+
+
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+
+
+function App() {
+  return (
+    <Router>
+        <Navbar/>
+        <Routes>
+            <Route path = "/" element = {<Home />} />
+            <Route path = "/Product" element = {<Product />} />
+            <Route path = "/Contact" element = {<Contact />} />
+        </Routes>
+    </Router>
   )
 }
 
 export default App
+
+
+
+function Navbar(){
+   return (
+     <>
+      <Link to = "/">Home</Link>
+      <Link to = "/Product">Product</Link>
+      <Link to = "/Contact">Contact</Link>
+     </>
+   )
+}
+
+
+function Home(){
+  return(
+    <>
+      Home
+    </>
+  )
+}
+
+
+function Product(){
+  return(
+    <>
+      Product
+    </>
+  )
+}
+
+
+
+function Contact(){
+  return(
+    <>
+      Contact
+    </>
+  )
+}
